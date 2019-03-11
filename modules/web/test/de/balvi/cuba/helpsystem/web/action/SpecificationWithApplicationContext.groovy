@@ -59,6 +59,7 @@ class SpecificationWithApplicationContext extends Specification {
                     // applicationContext.getBean(name, clazz) >> instance
                     beanLocator.get(name) >> instance
                     beanLocator.get(name, clazz) >> instance
+
                 }
             }
             catch(MissingPropertyException e) {
