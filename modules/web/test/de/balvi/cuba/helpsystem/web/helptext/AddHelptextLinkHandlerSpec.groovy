@@ -1,6 +1,6 @@
 package de.balvi.cuba.helpsystem.web.helptext
 
-import com.haulmont.cuba.gui.components.Component
+import com.haulmont.cuba.gui.components.HasValue
 import de.balvi.cuba.helpsystem.entity.Helptext
 import de.balvi.cuba.helpsystem.entity.HelptextCategory
 import spock.lang.Specification
@@ -8,7 +8,7 @@ import spock.lang.Specification
 class AddHelptextLinkHandlerSpec extends Specification {
     AddHelptextLinkHandler sut
 
-    Component.HasValue target = Mock(Component.HasValue)
+    HasValue target = Mock(HasValue)
 
     def setup() {
         sut = new AddHelptextLinkHandler(target: target)
