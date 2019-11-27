@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 04.03.2019
+
+### Changed
+- changes due to migration to 7.0
+
+### Dependencies
+- CUBA 7.0.x (support only Legacy Screen API)
+
 ## [0.5.1] - 04.03.2019
 
 ### Fixed
