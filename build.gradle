@@ -1,6 +1,6 @@
 
 buildscript {
-    ext.cubaVersion = '7.0.2'
+    ext.cubaVersion = '7.1.0'
     repositories { 
         mavenLocal() 
         maven {
@@ -22,7 +22,6 @@ def modulePrefix = 'help-system'
 
 def globalModule = project(":${modulePrefix}-global" )
 def coreModule = project(":${modulePrefix}-core" )
-def guiModule = project(":${modulePrefix}-gui" )
 def webModule = project(":${modulePrefix}-web" )
 
 def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
@@ -37,7 +36,7 @@ def bintrayRepositoryUrl = "https://api.bintray.com/maven/balvi/cuba-components/
 cuba {
     artifact {
         group = 'de.balvi.cuba.helpsystem'
-        version = "0.6.0"
+        version = "0.7.0"
         isSnapshot = false
     }
 
@@ -98,15 +97,15 @@ test.finalizedBy(project.tasks.coberturaCheck)
 
 
 
-configure([globalModule, coreModule, guiModule, webModule]) {
+configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'java')
     apply(plugin: 'maven')
     apply(plugin: 'cuba')
 
     dependencies {
-        testCompile('junit:junit:4.12')
-        testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
-        testRuntime('cglib:cglib-nodep:3.2.4')
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+        testRuntime 'cglib:cglib-nodep:3.2.4'
     }
 
     task sourceJar(type: Jar) {
@@ -119,7 +118,7 @@ configure([globalModule, coreModule, guiModule, webModule]) {
     }
 }
 
-configure([globalModule, coreModule, guiModule, webModule]) {
+configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'groovy')
     apply plugin: 'net.saliman.cobertura'
     apply plugin: 'codenarc'
@@ -160,8 +159,8 @@ configure([globalModule, coreModule, guiModule, webModule]) {
 configure(globalModule) {
     dependencies {
         if (!JavaVersion.current().isJava8()) {
-            runtime('javax.xml.bind:jaxb-api:2.3.1')
-            runtime('org.glassfish.jaxb:jaxb-runtime:2.3.1')
+            runtime 'javax.xml.bind:jaxb-api:2.3.1'
+            runtime 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
         }
     }
     entitiesEnhancing {
@@ -227,18 +226,6 @@ configure(coreModule) {
     }
 }
 
-configure(guiModule) {
-    dependencies {
-        compile(globalModule)
-
-    }
-
-    task deployConf(type: Copy) {
-        from file('src')
-        include "de/balvi/cuba/helpsystem/**"
-        into "$cuba.tomcat.dir/conf/${modulePrefix}"
-    }
-}
 
 configure(webModule) {
     configurations {
@@ -247,7 +234,7 @@ configure(webModule) {
 
     dependencies {
         compileOnly(servletApi)
-        compile(guiModule)
+        compile(globalModule)
 
     }
     
@@ -285,7 +272,7 @@ configure(webModule) {
 
     task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
         appName = "${modulePrefix}"
-        appJars(modulePrefix + '-global', modulePrefix + '-gui', modulePrefix + '-web')
+        appJars(modulePrefix + '-global', modulePrefix + '-web')
     }
 }
 
