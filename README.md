@@ -31,13 +31,14 @@ This application component offers a context help system for your CUBA applicatio
 
 | Platform Version | Add-on Version |
 | ---------------- | -------------- |
+| 7.0.x            | 0.6.x          |
 | 6.10.x           | 0.5.x          |
 | 6.9.x            | skipped        |
 | 6.8.x            | 0.3.x          |
 | 6.7.x            | 0.2.x          |
 | 6.6.x            | 0.1.x          |
 
-The latest version is: `0.5.1`
+The latest version is: `0.6.0`
 
 Add custom application component to your project:
 

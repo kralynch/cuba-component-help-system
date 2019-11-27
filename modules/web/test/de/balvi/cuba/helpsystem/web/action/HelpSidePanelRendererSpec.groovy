@@ -2,15 +2,19 @@ package de.balvi.cuba.helpsystem.web.action
 
 import com.haulmont.cuba.core.global.Security
 import com.haulmont.cuba.gui.components.Component
+import com.haulmont.cuba.gui.components.Fragment
 import com.haulmont.cuba.gui.components.Frame
 import com.haulmont.cuba.gui.components.SplitPanel
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory
+import com.haulmont.cuba.web.gui.components.WebFragment
+import com.haulmont.cuba.web.sys.WebScreens
 
 class HelpSidePanelRendererSpec extends SpecificationWithApplicationContext {
 
     HelpSidePanelRenderer sut
 
-    Frame frame = Mock(Frame)
+    // Frame frame = Mock(Frame)
+    WebFragment frame = Mock(WebFragment)
     Collection<Component> components = []
     ComponentsFactory factory = Mock(ComponentsFactory)
     SplitPanel splitPanel = Mock(SplitPanel)
@@ -28,7 +32,7 @@ class HelpSidePanelRendererSpec extends SpecificationWithApplicationContext {
         sut.security = Mock(Security)
     }
 
-    def 'initComponent registriert alle Komponenten neu, nachdem diese entfernt wurden'() {
+    def 'initComponent re-registers all components after they have been removed'() {
 
         setup:
         Component c1 = Mock(Component)
