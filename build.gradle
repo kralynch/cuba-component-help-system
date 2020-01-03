@@ -59,7 +59,7 @@ cuba {
 }
 
 dependencies {
-    appComponent("de.balvi.cuba.declarativecontrollers:declarativecontrollers-global:0.8.0")
+    appComponent("de.balvi.cuba.declarativecontrollers:declarativecontrollers-global:0.9.0")
 
 }
 
